@@ -7,33 +7,93 @@ while txtIn != 5:
 
     t.printMenu()
 
-    lista = t.loadDictionary("dictionary.txt")
+    t.loadDictionary("dictionary.txt")
 
-    while txtIn != int:
-        txtIn = input()
+    txtIn = input()
 
     # Add input control here!
 
     if int(txtIn) == 1:
         print("OK, quale parola devo aggiungere?")
-        while txtIn != str:
+
+        indicatore = False
+        while indicatore == False:
             txtIn = input().lower().split()
+            indicatore = True
+            for parola in txtIn:
+                if not parola.isalpha():
+                    indicatore = False
 
-        parole = []
-        for i in range(len(txtIn)):
-            if i == 1:
-                pass
-            else:
-                parole.append(txtIn[i - 1])
-
-        tupla = (txtIn[0], parole)
+        parola = txtIn[0]
+        traduzioni = " ".join(txtIn[1:])
+        tupla = (parola, traduzioni)
         t.handleAdd(tupla)
 
-    if int(txtIn) == 2:
-        pass
-    if int(txtIn) == 3:
-        pass
-    if int(txtIn) == 4:
-        pass
-    if int(txtIn) == 5:
+        print("['", tupla[0], "'", end = "")
+        l = tupla[1].split()
+        for elemento in l:
+            print(", '", elemento, "'", end = "")
+        print("]")
+
+
+    elif int(txtIn) == 2:
+        print("OK, quale parola devo cercare?")
+        indicatore = False
+        while indicatore == False:
+            txtIn = input().lower()
+            if txtIn.isalpha():
+                indicatore = True
+
+        traduzione = t.handleTranslate(txtIn)
+        if traduzione == None:
+            print("NO")
+            continue
+
+        if len(traduzione.split()) > 1:
+            l_traduzione = traduzione.split()
+            print("[", end = "")
+            for i in range(len(l_traduzione)):
+                if i == 0:
+                    print("'", l_traduzione[i], "'", end = "")
+                else:
+                    print(", '", l_traduzione[i], "'", end = "")
+            print("]")
+        else:
+            print(f"['{traduzione}']")
+
+
+    elif int(txtIn) == 3:
+        print("OK, quale parola devo cercare?")
+        indicatore = False
+        while indicatore == False:
+            indicatore = True
+            txtIn = input().lower()
+            for char in txtIn:
+                if char != "?" and not char.isalpha():
+                    indicatore = False
+            if txtIn.count("?") != 1:
+                indicatore = False
+
+        traduzione = t.handleWildCard(txtIn)
+        if traduzione == "":
+            print("NO")
+            continue
+
+        if len(traduzione.split()) > 1:
+            traduzione.split()
+            print("[", end="")
+            for i in range(len(traduzione)):
+                if i == 0:
+                    print("'", traduzione[i], "'", end="")
+                else:
+                    print(", '", traduzione[i], "'", end="")
+            print("]")
+        else:
+            print(f"['{traduzione}']")
+
+
+    elif int(txtIn) == 4:
+        t.stampa()
+
+    elif int(txtIn) == 5:
         break

@@ -3,7 +3,7 @@ import dictionary as d
 class Translator:
 
     def __init__(self):
-        self.lista = []
+        self.dizionario = d.Dictionary()
 
     def printMenu(self):
         # 1. Aggiungi nuova parola
@@ -14,26 +14,27 @@ class Translator:
         print("1. Aggiungi nuova parola\n2. Cerca una traduzione\n3. Cerca con wildcard\n4. Stampa tutto il dizionario"
               "\n5. Exit\n-------------------------------\n")
 
-
     def loadDictionary(self, dict: str):
         # dict is a string with the filename of the dictionary
         with open(dict, 'r') as file:
             for line in file:
-                tupla = line.split()
-                self.lista.append(d.Dictionary(tupla[0], tupla[1]))
-        return self.lista
-
+                divisione = line.split()
+                parola = divisione[0]
+                traduzioni = divisione[1]
+                tupla = (parola, traduzioni)
+                self.dizionario.addWord(tupla)
 
     def handleAdd(self, entry: tuple):
         # entry is a tuple <parola_aliena> <traduzione1 traduzione2 ...>
-        oggetto = d.Dictionary(entry[0])
-        self.lista.append(oggetto)
+        self.dizionario.addWord(entry)
 
-
-    def handleTranslate(self, query):
+    def handleTranslate(self, query: str):
         # query is a string <parola_aliena>
-        pass
+        return self.dizionario.translate(query)
 
-    def handleWildCard(self,query):
+    def handleWildCard(self, query: str):
         # query is a string with a ? --> <par?la_aliena>
-        pass
+        return self.dizionario.translateWordWildCard(query)
+
+    def stampa(self):
+        self.dizionario.stampati()
