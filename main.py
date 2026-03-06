@@ -1,13 +1,13 @@
 import translator as tr
 
 t = tr.Translator()
+t.loadDictionary("dictionary.txt")
 
 txtIn = ""
+
 while txtIn != 5:
 
     t.printMenu()
-
-    t.loadDictionary("dictionary.txt")
 
     txtIn = input()
 
@@ -80,13 +80,13 @@ while txtIn != 5:
             continue
 
         if len(traduzione.split()) > 1:
-            traduzione.split()
+            stampa = traduzione.split()
             print("[", end="")
-            for i in range(len(traduzione)):
+            for i in range(len(stampa)):
                 if i == 0:
-                    print("'", traduzione[i], "'", end="")
+                    print("'", stampa[i], "'", end="")
                 else:
-                    print(", '", traduzione[i], "'", end="")
+                    print(", '", stampa[i], "'", end="")
             print("]")
         else:
             print(f"['{traduzione}']")
