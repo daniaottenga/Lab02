@@ -2,7 +2,7 @@ import dictionary as d
 
 class Translator:
 
-    def __init__(self, dizionario = d.Dictionary):
+    def __init__(self, dizionario = d.Dictionary()):
         self.dizionario = dizionario
 
     def printMenu(self):

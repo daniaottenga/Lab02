@@ -3,7 +3,7 @@ class Dictionary:
     def __init__(self, dizionario = {}):
         self.dizionario = dizionario
 
-    def addWord(self, tupla: tuple):
+    def addWord(self, tupla):
         self.dizionario[tupla[0]] = tupla[1]
         print(self.dizionario.get(tupla[0]))
 

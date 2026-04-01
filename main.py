@@ -13,7 +13,7 @@ while(True):
         print("OK, quale parola devo aggiungere?")
 
         indicatore = False
-        while indicatore:
+        while not indicatore:
             txtIn = input().lower().split()
             indicatore = True
             for parola in txtIn:
