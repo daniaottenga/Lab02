@@ -1,7 +1,7 @@
 class Dictionary:
 
-    def __init__(self):
-        self.dizionario = {}
+    def __init__(self, dizionario = {}):
+        self.dizionario = dizionario
 
     def addWord(self, tupla: tuple):
         self.dizionario[tupla[0]] = tupla[1]

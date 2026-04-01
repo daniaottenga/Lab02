@@ -2,8 +2,8 @@ import dictionary as d
 
 class Translator:
 
-    def __init__(self):
-        self.dizionario = d.Dictionary()
+    def __init__(self, dizionario = d.Dictionary):
+        self.dizionario = dizionario
 
     def printMenu(self):
         # 1. Aggiungi nuova parola

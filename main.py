@@ -3,21 +3,17 @@ import translator as tr
 t = tr.Translator()
 t.loadDictionary("dictionary.txt")
 
-txtIn = ""
-
-while txtIn != 5:
+while(True):
 
     t.printMenu()
 
     txtIn = input()
 
-    # Add input control here!
-
     if int(txtIn) == 1:
         print("OK, quale parola devo aggiungere?")
 
         indicatore = False
-        while indicatore == False:
+        while indicatore:
             txtIn = input().lower().split()
             indicatore = True
             for parola in txtIn:
@@ -45,7 +41,7 @@ while txtIn != 5:
                 indicatore = True
 
         traduzione = t.handleTranslate(txtIn)
-        if traduzione == None:
+        if not traduzione:
             print("NO")
             continue
 
